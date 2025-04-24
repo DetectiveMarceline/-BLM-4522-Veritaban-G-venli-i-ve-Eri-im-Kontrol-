@@ -2,27 +2,15 @@
 Veritabanı Güvenliği ve Erişim Kontrolü
 
 # Adım 1: SQL Server Authentication ile Erişim Yönetimi
-
--- SQL login oluşturma
 CREATE LOGIN HW_SalesUser WITH PASSWORD = 'StrongPassword123!';
-
--- Veritabanı kullanıcısı oluşturma
 USE SalesDB;
 CREATE USER HW_SalesUser FOR LOGIN HW_SalesUser;
-
--- Veritabanı rolü oluşturma
 CREATE ROLE HW_SalesStaffRole;
-
--- Role izinler verme
 GRANT SELECT ON dbo.Customers TO HW_SalesStaffRole;
 GRANT SELECT, INSERT, UPDATE ON dbo.Sales TO HW_SalesStaffRole;
-
--- Kullanıcıyı role ekleme
 ALTER ROLE HW_SalesStaffRole ADD MEMBER HW_SalesUser;
 
 # Adım 2: Windows Authentication ile Erişim Yönetimi
-
--- Windows hesabı için kullanıcı oluşturma
 USE SalesDB;
 
 -- Windows kullanıcısını kontrol et ve oluştur
